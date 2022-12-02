@@ -28,7 +28,7 @@ class TestDemoTest {
 	@ParameterizedTest
 	@MethodSource ( "TestDemoTest#argumentsForAddPositive")
 	void assertThatTwoPositiveNumbersAreAddedCorrectly(int a, int b, int expected, boolean expectException) {
-		if(!expectException) {
+		if(expectException) {
 			assertThat(testDemo.addPositive(a, b)).isEqualTo(expected);
 		}
 		else {
@@ -40,18 +40,17 @@ class TestDemoTest {
 	
 	static  Stream<Object> argumentsForAddPositive() {
 		return Stream.of(
-		arguments( 2, 4, 6, false),
-		arguments( 1, 8, 9, false),
-		arguments( 3, 7, 10, false),
+		arguments( 2, 4, 6, true),
+		arguments( 1, 8, 9, true),
+		arguments( 3, 7, 10, true),
 		arguments( 0, 0, 0, false),
 		arguments( -1, -3, -4, false),
-		arguments( 7, 25, 32, false),
-		arguments( 54, 26, 80, false),
+		arguments( 7, 25, 32, true),
+		arguments( 54, 26, 80, true),
 		arguments( 0, 1, 1, false),
 		arguments( 3, 0, 3, false),
 		arguments( -1, 4, 3, false),
-		arguments( 1, -8, -7, false),
-		arguments( 1, 8, 60, false)
+		arguments( 1, -8, -7, false)
 		);
 	}
 	
